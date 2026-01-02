@@ -1,4 +1,5 @@
 ZeroDay Squad
+URL : https://zero-day-squad-web.vercel.app/
 
 A cybersecurity-focused web platform to showcase projects, achievements, and team member profiles — built with a modern, secure, and scalable stack.
 
