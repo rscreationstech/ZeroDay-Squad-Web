@@ -243,12 +243,14 @@ export default function Index() {
               Discover our achievements in cybersecurity research and see the projects
               that are shaping the future of digital security.
             </p>
-            <Link to="/achievements" className="inline-block">
-              <Button variant="cyber" size="lg" className="w-full">
-                <Trophy className="w-5 h-5 mr-2" />
-                View Achievements
-              </Button>
-            </Link>
+            <div className="flex justify-center">
+              <Link to="/achievements" className="w-full sm:w-auto">
+                <Button variant="cyber" size="lg" className="w-full">
+                  <Trophy className="w-5 h-5 mr-2" />
+                  View Achievements
+                </Button>
+              </Link>
+            </div>
           </CyberCard>
         </div>
       </section>

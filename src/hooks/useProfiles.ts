@@ -10,7 +10,7 @@ export function useProfiles() {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("profiles")
-        .select("id,user_id,username,full_name,avatar_url,bio,skills,github_url,linkedin_url,website_url")
+        .select("id,user_id,username,full_name,avatar_url,bio,skills,github_url,linkedin_url,website_url,created_at,updated_at")
         .order("created_at", { ascending: false });
       
       if (error) throw error;

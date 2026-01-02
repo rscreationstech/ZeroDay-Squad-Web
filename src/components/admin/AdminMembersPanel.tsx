@@ -118,7 +118,13 @@ export function AdminMembersPanel() {
       }
 
       const response = await supabase.functions.invoke("delete-user", {
-        body: { userId: deleteTarget.userId },
+        body: { 
+          userId: deleteTarget.userId,
+          callingUserId: session.user.id,
+        },
+        headers: {
+          Authorization: `Bearer ${session.access_token}`,
+        },
       });
 
       if (response.error) {
@@ -138,7 +144,7 @@ export function AdminMembersPanel() {
     } catch (error: any) {
       toast({
         title: "Error",
-        description: error.message,
+        description: error.message || "An unknown error occurred",
         variant: "destructive",
       });
     } finally {
@@ -224,7 +230,6 @@ export function AdminMembersPanel() {
             <TableHeader>
               <TableRow>
                 <TableHead>Username</TableHead>
-                <TableHead>Email</TableHead>
                 <TableHead>Full Name</TableHead>
                 <TableHead>Joined</TableHead>
                 <TableHead className="text-right">Actions</TableHead>
@@ -236,10 +241,9 @@ export function AdminMembersPanel() {
                   <TableCell className="font-mono text-primary">
                     @{profile.username || "—"}
                   </TableCell>
-                  <TableCell>{profile.email || "—"}</TableCell>
                   <TableCell>{profile.full_name || "—"}</TableCell>
                   <TableCell className="text-muted-foreground">
-                    {new Date(profile.created_at).toLocaleDateString()}
+                    {profile.created_at ? new Date(profile.created_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "—"}
                   </TableCell>
                   <TableCell className="text-right">
                     <Button
@@ -255,7 +259,7 @@ export function AdminMembersPanel() {
               ))}
               {(!profiles || profiles.length === 0) && (
                 <TableRow>
-                  <TableCell colSpan={5} className="text-center text-muted-foreground">
+                  <TableCell colSpan={4} className="text-center text-muted-foreground">
                     No members found
                   </TableCell>
                 </TableRow>
