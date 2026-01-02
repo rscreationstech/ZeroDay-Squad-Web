@@ -99,7 +99,7 @@ export default function Index() {
           {/* Subtitle with typewriter effect */}
           <div className="text-xl md:text-2xl text-muted-foreground mb-8 h-8">
             <TypewriterText
-              text="> Built by curiosity. Driven by security"
+              text="> Built by curiosity. Driven by security."
               speed={40}
               delay={800}
             />
